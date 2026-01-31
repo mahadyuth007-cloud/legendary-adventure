@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Postpartum Support Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #chatbox { width: 400px; height: 400px; border: 1px solid #ccc; padding: 10px; overflow-y: scroll; }
+        input { width: 300px; padding: 5px; }
+        button { padding: 5px; }
+    </style>
+</head>
+<body>
+    <h2>🤱 Postpartum Support Chatbot</h2>
+    <div id="chatbox"></div>
+    <input id="userInput" type="text" placeholder="Type your message..."/>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function chatbotResponse(userInput) {
+            userInput = userInput.toLowerCase();
+
+            if (userInput.includes("sad") || userInput.includes("depressed")) {
+                return "I'm really sorry you're feeling this way. You're not alone—many new mothers experience this. It may help to talk with a trusted friend or a healthcare professional.";
+            } else if (userInput.includes("anxious") || userInput.includes("worried")) {
+                return "It sounds like you're feeling anxious. Try taking a few deep breaths. Remember, it's okay to ask for help and share your feelings.";
+            } else if (userInput.includes("tired") || userInput.includes("exhausted")) {
+                return "Rest is so important. Even short naps can help. If possible, ask a loved one to support you so you can recharge.";
+            } else if (userInput.includes("lonely")) {
+                return "Feeling lonely is common after childbirth. Connecting with other mothers or support groups can make a big difference.";
+	    } else if (userInput.includes("help")) {
+                return "If you're struggling, please reach out to a healthcare provider. You deserve support. Talking to someone you trust can really help.";
+            } else {
+                return "I hear you. Postpartum recovery can be challenging. Remember to be kind to yourself and take things one step at a time.";
+            }
+        }
+
+        function sendMessage() {
+            var userText = document.getElementById("userInput").value;
+            var chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += "<p><b>You:</b> " + userText + "</p>";
+            document.getElementById("userInput").value = "";
+
+            var botReply = chatbotResponse(userText);
+            chatbox.innerHTML += "<p><b>Chatbot:</b> " + botReply + "</p>";
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
